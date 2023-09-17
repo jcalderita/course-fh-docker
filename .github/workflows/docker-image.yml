@@ -1,6 +1,7 @@
 name: Docker Image CI
 
 on:
+  run: echo "Disabled"
 #   push:
 #     branches: [ "main" ]
 #   pull_request:
