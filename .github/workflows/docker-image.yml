@@ -28,7 +28,9 @@ jobs:
     - name: Build Docker Image
       run: |
         docker build -t jcalderita/docker-graphql:0.0.1 ./graphql-actions
+        docker build -t jcalderita/docker-graphql:latest ./graphql-actions
 
     - name: Push Docker Image
       run: |
         docker push jcalderita/docker-graphql:0.0.1
+        docker push jcalderita/docker-graphql:latest
