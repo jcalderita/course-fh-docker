@@ -31,4 +31,4 @@ jobs:
 
     - name: Push Docker Image
       run: |
-        docker push jcalderita/docker-graphql:0.0.1 ./graphql-actions
+        docker push jcalderita/docker-graphql:0.0.1
