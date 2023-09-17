@@ -31,17 +31,20 @@ jobs:
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-        NEW_VERSION: ${{steps.version.outputs.version}}
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         echo "New version: $NEW_VERSION"
 
-    # - name: Build Docker Image
-    #   run: |
-    #     docker build -t jcalderita/docker-graphql:0.0.1 ./graphql-actions
-    #     docker build -t jcalderita/docker-graphql:latest ./graphql-actions
+    - name: Build Docker Image
+      env: 
+        NEW_VERSION: ${{steps.version.outputs.version}}
+      run: |
+        docker build -t jcalderita/docker-graphql:$NEW_VERSION ./graphql-actions
+        docker build -t jcalderita/docker-graphql:latest ./graphql-actions
 
-    # - name: Push Docker Image
-    #   run: |
-    #     docker push jcalderita/docker-graphql:0.0.1
-    #     docker push jcalderita/docker-graphql:latest
+    - name: Push Docker Image
+      env: 
+        NEW_VERSION: ${{steps.version.outputs.version}}    
+      run: |
+        docker push jcalderita/docker-graphql:$NEW_VERSION
+        docker push jcalderita/docker-graphql:latest
